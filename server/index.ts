@@ -7,11 +7,10 @@ import multer from "multer";
 import helmet, { crossOriginResourcePolicy } from "helmet";
 import morgan from "morgan";
 import path from "path";
-import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.ts";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const filename = path.basename(__filename);
+const dirname = path.dirname(filename);
 dotenv.config();
 
 const app = express();
@@ -41,7 +40,7 @@ app.use(urlencoded({ limit: "30mb", extended: true }));
 
 app.use(cors());
 
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+app.use("/assets", express.static(path.join(dirname, "public/assets")));
 
 // Set up file storage
 const storage = multer.diskStorage({

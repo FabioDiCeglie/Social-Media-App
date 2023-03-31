@@ -1,4 +1,11 @@
 {
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --watch index.ts"
+  },
   "dependencies": {
     "bcrypt": "5.1.0",
     "body-parser": "1.20.2",
@@ -10,24 +17,16 @@
     "jsonwebtoken": "9.0.0",
     "mongoose": "7.0.3",
     "morgan": "1.10.0",
+    "multer": "1.4.5-lts.1",
     "multer-gridfs-storage": "5.0.2",
     "typescript": "5.0.3"
   },
-  "name": "server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
   "devDependencies": {
     "@types/bcrypt": "5.0.0",
     "@types/cors": "2.8.13",
     "@types/jsonwebtoken": "9.0.1",
-    "@types/morgan": "1.9.4"
+    "@types/morgan": "1.9.4",
+    "ts-node": "10.9.1"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Fabio DC <fabiodiceglie@icloud.com> (http://fabiodiceglie.com/)",
-  "license": "MIT",
-  "description": ""
+  "keywords": []
 }
