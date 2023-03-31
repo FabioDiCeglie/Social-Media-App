@@ -18,7 +18,9 @@
   "main": "index.js",
   "type": "module",
   "devDependencies": {
+    "@types/bcrypt": "5.0.0",
     "@types/cors": "2.8.13",
+    "@types/jsonwebtoken": "9.0.1",
     "@types/morgan": "1.9.4"
   },
   "scripts": {
