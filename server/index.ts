@@ -8,6 +8,7 @@ import helmet, { crossOriginResourcePolicy } from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
+import { register } from "./controllers/auth.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,6 +54,9 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+// Routes
+app.post("/auth/register", upload.single("picture"), register);
 
 const port = 3001 || 6001;
 mongoose
