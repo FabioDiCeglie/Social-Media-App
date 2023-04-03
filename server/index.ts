@@ -9,6 +9,7 @@ import morgan from "morgan";
 import path from "path";
 import { register } from "./controllers/auth.ts";
 import authRoutes from "./routes/auth.ts";
+import { verifyToken } from "./middleware/auth.ts";
 
 const filename = path.basename(__filename);
 const dirname = path.dirname(filename);
