@@ -9,6 +9,8 @@ import morgan from "morgan";
 import path from "path";
 import { register } from "./controllers/auth.ts";
 import authRoutes from "./routes/auth.ts";
+import userRoutes from "./routes/users.ts";
+
 import { verifyToken } from "./middleware/auth.ts";
 
 const filename = path.basename(__filename);
@@ -61,6 +63,7 @@ app.post("/auth/register", upload.single("picture"), register);
 
 // Routes
 app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 const port = 3001 || 6001;
 mongoose
