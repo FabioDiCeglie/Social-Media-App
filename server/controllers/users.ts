@@ -1,7 +1,7 @@
-import { Response, Request } from "express";
-import { User } from "../models/User";
-import { Friend, IUser } from "../lib/types";
+import { Request, Response } from "express";
 import { getUserFriendsFormatted } from "../lib/helpers";
+import { IUser } from "../lib/types";
+import { User } from "../models/User";
 
 export const getUser = async (req: Request, res: Response) => {
   try {
