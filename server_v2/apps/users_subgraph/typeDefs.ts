@@ -21,12 +21,14 @@ export const typeDefs = gql`
     location: String
     occupation: String
     viewedProfile: String
+    token: String
     impressions: Int
   }
 
   type Query {
     user(id: String): [User]
     userFriends(id: String): [Friend]
+    login(email: String, password: String): User
   }
 
   type Mutation {
