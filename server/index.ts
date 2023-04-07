@@ -1,17 +1,18 @@
-import express, { json } from "express";
 import bodyParser, { urlencoded } from "body-parser";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import multer from "multer";
+import express, { json } from "express";
 import helmet, { crossOriginResourcePolicy } from "helmet";
+import mongoose from "mongoose";
 import morgan from "morgan";
+import multer from "multer";
 import path from "path";
 import { register } from "./controllers/auth.ts";
 import authRoutes from "./routes/auth.ts";
 import userRoutes from "./routes/users.ts";
-
+import postsRoutes from "./routes/posts.ts";
 import { verifyToken } from "./middleware/auth.ts";
+import { createPost } from "./controllers/posts.ts";
 
 const filename = path.basename(__filename);
 const dirname = path.dirname(filename);
@@ -60,10 +61,12 @@ const upload = multer({ storage });
 
 // Routes with files
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 // Routes
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/posts", postsRoutes);
 
 const port = 3001 || 6001;
 mongoose
