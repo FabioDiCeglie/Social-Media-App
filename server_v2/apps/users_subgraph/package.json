@@ -10,7 +10,17 @@
   "author": "Fabio DC <fabiodiceglie@icloud.com> (http://fabiodiceglie.com/)",
   "license": "MIT",
   "dependencies": {
+    "@apollo/server": "4.6.0",
     "@apollo/subgraph": "2.4.1",
-    "graphql-tag": "2.12.6"
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "graphql-tag": "2.12.6",
+    "mongoose": "7.0.3",
+    "morgan": "1.10.0"
+  },
+  "devDependencies": {
+    "@types/cors": "2.8.13",
+    "@types/morgan": "1.9.4",
+    "typescript": "5.0.3"
   }
 }
