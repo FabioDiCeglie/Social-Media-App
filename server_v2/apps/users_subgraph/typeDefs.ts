@@ -1,14 +1,13 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
-
   type Friend {
-  id: String!
-  firstName: String!
-  lastName: String!
-  occupation: String;
-  location: String;
-  picturePath: String;
+    id: String!
+    firstName: String!
+    lastName: String!
+    occupation: String
+    location: String
+    picturePath: String
   }
 
   type User {
@@ -22,7 +21,7 @@ export const typeDefs = gql`
     location: String
     occupation: String
     viewedProfile: String
-    impressions: Number
+    impressions: Int
   }
 
   type Query {
@@ -31,6 +30,6 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    addRemoveFriend(id:String, friendId: String): [Friend]
+    addRemoveFriend(id: String, friendId: String): [Friend]
   }
 `;

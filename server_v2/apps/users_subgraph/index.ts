@@ -1,9 +1,7 @@
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import { json } from "express";
-import "express-async-errors";
 import morgan from "morgan";
-import "../open-telemetry";
 import { app, httpServer, server } from "./server";
 
 app.use(

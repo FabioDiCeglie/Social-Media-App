@@ -2,9 +2,9 @@
   "name": "users_subgraph",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --watch index.ts"
   },
   "keywords": [],
   "author": "Fabio DC <fabiodiceglie@icloud.com> (http://fabiodiceglie.com/)",
@@ -20,7 +20,9 @@
   },
   "devDependencies": {
     "@types/cors": "2.8.13",
+    "@types/express": "4.17.17",
     "@types/morgan": "1.9.4",
+    "graphql": "16.6.0",
     "typescript": "5.0.3"
   }
 }
