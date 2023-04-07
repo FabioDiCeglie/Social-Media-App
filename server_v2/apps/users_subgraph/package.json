@@ -1,0 +1,16 @@
+{
+  "name": "users_subgraph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Fabio DC <fabiodiceglie@icloud.com> (http://fabiodiceglie.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/subgraph": "2.4.1",
+    "graphql-tag": "2.12.6"
+  }
+}
