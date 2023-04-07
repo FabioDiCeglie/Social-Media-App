@@ -1,0 +1,16 @@
+{
+  "name": "models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Fabio DC <fabiodiceglie@icloud.com> (http://fabiodiceglie.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "7.0.3",
+    "typescript": "5.0.3"
+  }
+}
