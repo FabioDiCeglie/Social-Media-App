@@ -1,33 +1,12 @@
-import { ApolloGateway, IntrospectAndCompose } from "@apollo/gateway";
-import { ApolloServer } from "@apollo/server";
-import express, { Application } from "express";
-import http from "http";
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import { json } from "express";
 import morgan from "morgan";
-
-import multer from "multer";
-import helmet, { crossOriginResourcePolicy } from "helmet";
 import bodyParser, { urlencoded } from "body-parser";
+import helmet, { crossOriginResourcePolicy } from "helmet";
 import mongoose from "mongoose";
+import { app, httpServer, server } from "./server";
 require("dotenv").config();
-
-export const app: Application = express();
-export const httpServer = http.createServer(app);
-
-const gateway = new ApolloGateway({
-  supergraphSdl: new IntrospectAndCompose({
-    subgraphs: [
-      { name: "users", url: "http://localhost:4004/graphql" },
-      { name: "posts", url: "http://localhost:4010/graphql" },
-    ],
-  }),
-});
-
-const server = new ApolloServer({
-  gateway,
-});
 
 // This line of code is a logging middleware that logs HTTP requests and responses
 app.use(morgan("common"));
