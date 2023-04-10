@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
+import { GraphQLError } from "graphql";
 import { Post } from "models/Post";
 
-export const likePost = async (req: Request, res: Response) => {
+export const likePost = async (args: { id: string; userId: string }) => {
   try {
-    const { id } = req.params;
-    const { userId } = req.body;
+    const { id, userId } = args;
     const post = await Post.findById(id);
     const isLiked = post?.likes?.get(userId);
 
@@ -21,8 +21,8 @@ export const likePost = async (req: Request, res: Response) => {
       },
       { new: true }
     );
-    res.status(201).json(updatedPost);
+    return updatedPost;
   } catch (err) {
-    res.status(404).json({ error: (err as Error).message });
+    return new GraphQLError(err as unknown as string);
   }
 };

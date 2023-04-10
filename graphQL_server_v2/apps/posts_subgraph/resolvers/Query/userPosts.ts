@@ -1,12 +1,15 @@
-import { Request, Response } from "express";
+import { GraphQLError } from "graphql";
 import { Post } from "models/Post";
 
-export const getUserPosts = async (req: Request, res: Response) => {
+export const getUserPosts = async (args: { userId: string }) => {
   try {
-    const { userId } = req.params;
+    const { userId } = args;
+    if (!userId) {
+      return new GraphQLError(`Need ${userId} in arguments of the query!`);
+    }
     const allPosts = await Post.find({ userId });
-    res.status(201).json(allPosts);
+    return allPosts;
   } catch (err) {
-    res.status(404).json({ error: (err as Error).message });
+    return new GraphQLError(err as unknown as string);
   }
 };

@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { GraphQLError } from "graphql";
 import { Post } from "models/Post";
 
-export const getFeedPosts = async (req: Request, res: Response) => {
+export const getFeedPosts = async () => {
   try {
     const allPosts = await Post.find();
-    res.status(201).json(allPosts);
+    return allPosts;
   } catch (err) {
-    res.status(404).json({ error: (err as Error).message });
+    return new GraphQLError(err as unknown as string);
   }
 };
