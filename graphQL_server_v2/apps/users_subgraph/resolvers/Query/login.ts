@@ -5,14 +5,10 @@ import { verifyTokenContext } from "lib/helpers";
 import { MyContext } from "lib/types";
 import { User } from "models/User";
 
-export const login: GraphQLFieldResolver<any, unknown> = async (
-  args: {
-    email: string;
-    password: string;
-  },
-  contextValue: MyContext
-) => {
-  verifyTokenContext(contextValue);
+export const login: GraphQLFieldResolver<any, unknown> = async (args: {
+  email: string;
+  password: string;
+}) => {
   try {
     const { email, password: newPassword } = args;
 
