@@ -21,3 +21,7 @@ export type IUser = {
   token?: string;
   friends: Friend[];
 };
+
+export type MyContext = {
+  token: string;
+};
