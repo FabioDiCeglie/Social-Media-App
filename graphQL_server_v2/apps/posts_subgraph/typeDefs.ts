@@ -6,14 +6,14 @@ export const typeDefs: DocumentNode = gql`
     userId: Boolean
   }
 
-  type Comment {
-    id: String!
-    firstName: String!
-    lastName: String!
-    occupation: String
-    location: String
-    picturePath: String
-  }
+  # type Comment {
+  #   id: String!
+  #   firstName: String!
+  #   lastName: String!
+  #   occupation: String
+  #   location: String
+  #   picturePath: String
+  # }
 
   type Post {
     id: String!
@@ -25,7 +25,7 @@ export const typeDefs: DocumentNode = gql`
     picturePath: String
     userPicturePath: String
     likes: Like
-    comments: [Comment]
+    comments: [String]
   }
 
   type Query {
