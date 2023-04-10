@@ -1,7 +1,8 @@
-import { Friend, IUser } from "./types";
+import { Friend, IUser, MyContext } from "./types";
 import { User } from "../models/User";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { GraphQLError } from "graphql";
 
 export const getUserFriendsFormatted = async (user: IUser) => {
   const friends = await Promise.all(
@@ -41,4 +42,14 @@ export const verifyToken = async (
   } catch (err) {
     res.status(500).json({ error: (err as Error).message });
   }
+};
+
+export const verifyTokenContext = async (contextValue: MyContext) => {
+  if (!contextValue.token)
+    throw new GraphQLError("User is not authenticated", {
+      extensions: {
+        code: "UNAUTHENTICATED",
+        http: { status: 401 },
+      },
+    });
 };
