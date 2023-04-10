@@ -1,17 +1,17 @@
-import { Request, Response } from "express";
+import { GraphQLError } from "graphql";
 import { User } from "models/User";
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUser = async (args: { id: string }) => {
   try {
-    const { id } = req.params;
+    const { id } = args;
 
     const user = await User.findById(id);
     if (!user) {
-      return res.status(400).json({ msg: `User: ${user} does not exist` });
+      return new GraphQLError(`User: ${user} does not exist`);
     }
 
-    res.status(200).json(user);
+    return user;
   } catch (err) {
-    res.status(404).json({ error: (err as Error).message });
+    return new GraphQLError(err as unknown as string);
   }
 };

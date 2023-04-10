@@ -27,7 +27,7 @@ export const typeDefs: DocumentNode = gql`
   }
 
   type Query {
-    user(id: String): [User]
+    user(id: String): User
     userFriends(id: String): [Friend]
     login(email: String, password: String): User
   }

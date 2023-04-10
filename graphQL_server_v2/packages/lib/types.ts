@@ -18,5 +18,6 @@ export type IUser = {
   picturePath: string;
   impressions: number;
   viewedProfile: number;
+  token?: string;
   friends: Friend[];
 };

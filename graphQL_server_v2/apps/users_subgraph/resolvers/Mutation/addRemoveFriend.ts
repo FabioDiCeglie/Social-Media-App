@@ -2,20 +2,22 @@ import { Request, Response } from "express";
 import { User } from "models/User";
 import { getUserFriendsFormatted } from "lib/helpers";
 import { IUser } from "lib/types";
+import { GraphQLError } from "graphql";
 
-export const addRemoveFriend = async (req: Request, res: Response) => {
+export const addRemoveFriend = async (args: {
+  id: string;
+  friendId: string;
+}) => {
   try {
-    const { id, friendId } = req.params;
+    const { id, friendId } = args;
 
     const user = await User.findById(id);
     const friend = await User.findById(friendId);
     if (!user) {
-      return res.status(400).json({ msg: `User: ${user} does not exist` });
+      return new GraphQLError(`User: ${user} does not exist`);
     }
     if (!friend) {
-      return res
-        .status(400)
-        .json({ msg: `User friend ${friend} does not exist` });
+      return new GraphQLError(`User friend ${friend} does not exist`);
     }
 
     if (user.friends.includes(friendId)) {
@@ -31,8 +33,8 @@ export const addRemoveFriend = async (req: Request, res: Response) => {
 
     const formattedFriends = getUserFriendsFormatted(user as IUser);
 
-    res.status(200).json(formattedFriends);
+    return formattedFriends;
   } catch (err) {
-    res.status(404).json({ error: (err as Error).message });
+    return new GraphQLError(err as unknown as string);
   }
 };
