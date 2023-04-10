@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
+import type { DocumentNode } from "graphql/language/ast";
 
-export const typeDefs = gql`
+export const typeDefs: DocumentNode = gql`
   type Like {
     userId: Boolean
   }
