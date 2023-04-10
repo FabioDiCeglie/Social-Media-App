@@ -10,10 +10,11 @@
   "author": "Fabio DC <fabiodiceglie@icloud.com> (http://fabiodiceglie.com/)",
   "license": "MIT",
   "dependencies": {
-    "typescript": "5.0.3",
-    "express": "4.18.2",
-    "jsonwebtoken": "9.0.0",
     "@types/express": "4.17.17",
-    "@types/jsonwebtoken": "9.0.1"
+    "@types/jsonwebtoken": "9.0.1",
+    "express": "4.18.2",
+    "graphql": "16.6.0",
+    "jsonwebtoken": "9.0.0",
+    "typescript": "5.0.3"
   }
 }

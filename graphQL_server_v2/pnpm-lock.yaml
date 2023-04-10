@@ -46,9 +46,6 @@ importers:
       morgan:
         specifier: 1.10.0
         version: 1.10.0
-      multer:
-        specifier: 1.4.5-lts.1
-        version: 1.4.5-lts.1
     devDependencies:
       '@types/body-parser':
         specifier: 1.19.2
@@ -65,9 +62,6 @@ importers:
       '@types/morgan':
         specifier: 1.9.4
         version: 1.9.4
-      '@types/multer':
-        specifier: 1.4.7
-        version: 1.4.7
       graphql:
         specifier: 16.6.0
         version: 16.6.0
@@ -266,6 +260,9 @@ importers:
       express:
         specifier: 4.18.2
         version: 4.18.2
+      graphql:
+        specifier: 16.6.0
+        version: 16.6.0
       jsonwebtoken:
         specifier: 9.0.0
         version: 9.0.0
