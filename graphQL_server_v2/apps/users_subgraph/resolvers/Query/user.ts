@@ -1,7 +1,13 @@
 import { GraphQLError } from "graphql";
+import { verifyTokenContext } from "lib/helpers";
+import { MyContext } from "lib/types";
 import { User } from "models/User";
 
-export const getUser = async (args: { id: string }) => {
+export const getUser = async (
+  args: { id: string },
+  contextValue: MyContext
+) => {
+  verifyTokenContext(contextValue);
   try {
     const { id } = args;
 

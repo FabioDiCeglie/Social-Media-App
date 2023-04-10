@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
 import { User } from "models/User";
-import { getUserFriendsFormatted } from "lib/helpers";
-import { IUser } from "lib/types";
+import { getUserFriendsFormatted, verifyTokenContext } from "lib/helpers";
+import { IUser, MyContext } from "lib/types";
 import { GraphQLError } from "graphql";
 
-export const addRemoveFriend = async (args: {
-  id: string;
-  friendId: string;
-}) => {
+export const addRemoveFriend = async (
+  args: {
+    id: string;
+    friendId: string;
+  },
+  contextValue: MyContext
+) => {
+  verifyTokenContext(contextValue);
   try {
     const { id, friendId } = args;
 
