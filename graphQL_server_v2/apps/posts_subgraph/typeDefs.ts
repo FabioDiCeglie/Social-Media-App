@@ -29,7 +29,7 @@ export const typeDefs = gql`
 
   type Query {
     feedPosts: [Post]
-    userPost(userId: String!): [Post]
+    userPosts(userId: String!): [Post]
   }
 
   type Mutation {
