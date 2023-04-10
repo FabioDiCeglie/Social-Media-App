@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
 import { GraphQLError } from "graphql";
+import { verifyTokenContext } from "lib/helpers";
+import { MyContext } from "lib/types";
 import { Post } from "models/Post";
 
-export const likePost = async (args: { id: string; userId: string }) => {
+export const likePost = async (
+  args: { id: string; userId: string },
+  contextValue: MyContext
+) => {
+  verifyTokenContext(contextValue);
   try {
     const { id, userId } = args;
     const post = await Post.findById(id);
