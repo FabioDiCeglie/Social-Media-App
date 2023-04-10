@@ -3,12 +3,13 @@ import bodyParser, { urlencoded } from "body-parser";
 import cors from "cors";
 import { json } from "express";
 import helmet, { crossOriginResourcePolicy } from "helmet";
+import jwt from "jsonwebtoken";
+import { verifyToken } from "lib/helpers";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import multer from "multer";
-import { app, httpServer, server } from "./server";
 import { createPost } from "./rest";
-import { verifyToken } from "lib/helpers";
+import { app, httpServer, server } from "./server";
 require("dotenv").config();
 
 // This line of code is a logging middleware that logs HTTP requests and responses
@@ -55,7 +56,25 @@ const startApolloServer = async () => {
     "/graphql",
     cors<cors.CorsRequest>(),
     json(),
-    expressMiddleware(server)
+    expressMiddleware(server, {
+      context: async ({ req, res }) => {
+        let token = req.header("Authorization");
+
+        if (!token) {
+          return res.status(403).send("Access Denied");
+        }
+
+        if (token.startsWith("Bearer ")) {
+          token = token.slice(7, token.length).trimStart();
+        }
+
+        const verified = jwt.verify(token, process.env.JWT_SECRET as string);
+        (req as unknown as any).user = verified;
+
+        // add token to context
+        return { token };
+      },
+    })
   );
 
   const port = 4010;
