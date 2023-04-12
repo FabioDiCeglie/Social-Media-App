@@ -4,14 +4,14 @@ import { getUserFriendsFormatted, verifyTokenContext } from "lib/helpers";
 import { IUser, MyContext } from "lib/types";
 import { GraphQLError } from "graphql";
 
-export const addRemoveFriend = async (
+export const addRemoveFriend = async (_: unknown,
   args: {
     id: string;
     friendId: string;
   },
-  contextValue: MyContext
+  contextValue: unknown
 ) => {
-  verifyTokenContext(contextValue);
+  verifyTokenContext(contextValue as MyContext);
   try {
     const { id, friendId } = args;
 

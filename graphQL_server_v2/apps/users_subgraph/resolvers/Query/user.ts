@@ -5,9 +5,9 @@ import { User } from "models/User";
 
 export const getUser = async (_: unknown,
   args: { id: string },
-  contextValue: MyContext
+  contextValue: unknown
 ) => {
-  verifyTokenContext(contextValue);
+  verifyTokenContext(contextValue as MyContext);
   try {
     const { id } = args;
 

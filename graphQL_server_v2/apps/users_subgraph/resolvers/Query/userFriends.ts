@@ -1,14 +1,13 @@
 import { User } from "models/User";
-import { Request, Response } from "express";
 import { getUserFriendsFormatted, verifyTokenContext } from "lib/helpers";
 import { IUser, MyContext } from "lib/types";
 import { GraphQLError } from "graphql";
 
-export const getUserFriends = async (
+export const getUserFriends = async (_: unknown,
   args: { id: string },
-  contextValue: MyContext
+  contextValue: unknown
 ) => {
-  verifyTokenContext(contextValue);
+  verifyTokenContext(contextValue as MyContext);
   try {
     const { id } = args;
 
