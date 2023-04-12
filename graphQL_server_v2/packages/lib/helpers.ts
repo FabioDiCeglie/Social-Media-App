@@ -44,7 +44,7 @@ export const verifyToken = async (
   }
 };
 
-export const verifyTokenContext = async (contextValue: MyContext) => {
+export const verifyTokenContext = (contextValue: MyContext) => {
   if (!contextValue.token)
     throw new GraphQLError("User is not authenticated", {
       extensions: {
