@@ -60,7 +60,7 @@ const startApolloServer = async () => {
         let token = req.header("Authorization");
 
         if (!token) {
-          return res.status(403).send("Access Denied");
+          return "";
         }
 
         if (token.startsWith("Bearer ")) {
