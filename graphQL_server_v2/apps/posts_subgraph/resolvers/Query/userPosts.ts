@@ -3,11 +3,11 @@ import { verifyTokenContext } from "lib/helpers";
 import { MyContext } from "lib/types";
 import { Post } from "models/Post";
 
-export const getUserPosts = async (
+export const getUserPosts = async (_: unknown,
   args: { userId: string },
-  contextValue: MyContext
+  contextValue: unknown
 ) => {
-  verifyTokenContext(contextValue);
+  verifyTokenContext(contextValue as MyContext);
   try {
     const { userId } = args;
     if (!userId) {
