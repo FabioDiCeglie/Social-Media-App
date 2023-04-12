@@ -6,15 +6,6 @@ export const typeDefs: DocumentNode = gql`
     userId: Boolean
   }
 
-  # type Comment {
-  #   id: String!
-  #   firstName: String!
-  #   lastName: String!
-  #   occupation: String
-  #   location: String
-  #   picturePath: String
-  # }
-
   type Post {
     id: String!
     userId: String!
@@ -24,7 +15,7 @@ export const typeDefs: DocumentNode = gql`
     description: String
     picturePath: String
     userPicturePath: String
-    likes: Like
+    likes: [Like]
     comments: [String]
   }
 
@@ -34,6 +25,6 @@ export const typeDefs: DocumentNode = gql`
   }
 
   type Mutation {
-    likePost(id: String!, userId: String!): [Post]
+    likePost(id: String!, userId: String!): Post
   }
 `;

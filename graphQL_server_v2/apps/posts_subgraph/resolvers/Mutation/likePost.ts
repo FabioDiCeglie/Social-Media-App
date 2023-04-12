@@ -4,13 +4,14 @@ import { verifyTokenContext } from "lib/helpers";
 import { MyContext } from "lib/types";
 import { Post } from "models/Post";
 
-export const likePost = async (
+export const likePost = async (_: unknown,
   args: { id: string; userId: string },
-  contextValue: MyContext
+  contextValue: unknown
 ) => {
-  verifyTokenContext(contextValue);
+  verifyTokenContext(contextValue as MyContext);
   try {
     const { id, userId } = args;
+
     const post = await Post.findById(id);
     const isLiked = post?.likes?.get(userId);
 
@@ -27,6 +28,7 @@ export const likePost = async (
       },
       { new: true }
     );
+
     return updatedPost;
   } catch (err) {
     return new GraphQLError(err as unknown as string);
