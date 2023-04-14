@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 import {IPost, IUser} from "../lib/types";
 
 const initialState = {
@@ -47,5 +47,12 @@ export const authSlice = createSlice({
     }
 })
 
+// config the store
+const store= configureStore({
+    reducer: {
+        authSlice: authSlice.reducer
+    }
+})
+
+export default store
 export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } = authSlice.actions
-export default authSlice.reducer
