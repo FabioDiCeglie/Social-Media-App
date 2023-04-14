@@ -21,3 +21,20 @@ export type IUser = {
     token?: string;
     friends: Friend[];
 };
+
+export type IPost = {
+    id: string
+    userId: string
+    firstName: string
+    lastName: string
+    location: string
+    description: string
+    picturePath: string
+    userPicturePath: string
+    likes: [Like]
+    comments: [string]
+}
+
+export type Like = {
+    userId: boolean
+}
