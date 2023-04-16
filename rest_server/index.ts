@@ -13,9 +13,6 @@ import userRoutes from "./routes/users.ts";
 import postsRoutes from "./routes/posts.ts";
 import { verifyToken } from "./middleware/auth.ts";
 import { createPost } from "./controllers/posts.ts";
-import { posts, users } from "./fake_data/index.ts";
-import { User } from "./models/User.ts";
-import Post from "./models/Post.ts";
 
 const filename = path.basename(__filename);
 const dirname = path.dirname(filename);
