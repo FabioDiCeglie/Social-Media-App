@@ -1,5 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import {IPost, IUser} from "../lib/types";
+import { IPost, IUser } from "../lib/types";
 
 const initialState = {
     mode: "light",
