@@ -1,3 +1,12 @@
+import {Color, PaletteMode} from "@mui/material";
+import {
+    CommonColors, PaletteAugmentColorOptions,
+    PaletteColor,
+    PaletteTonalOffset, TypeAction, TypeBackground,
+    TypeDivider,
+    TypeText
+} from "@mui/material/styles/createPalette";
+
 export type Friend = {
     id: string;
     firstName: string;
@@ -38,3 +47,19 @@ export type IPost = {
 export type Like = {
     userId: boolean
 }
+
+export type IPalette = {
+    mode: PaletteMode;
+    primary: PaletteColor;
+    neutral: {
+        dark: Color;
+        main: Color;
+        mediumMain: Color;
+        medium: Color;
+        light: Color;
+    }
+    background: {
+        default: string;
+        alt: string;
+    }
+};
