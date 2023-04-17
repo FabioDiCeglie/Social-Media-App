@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { IPost, IUser } from "../lib/types";
 
 const initialState = {
@@ -24,19 +24,19 @@ export const authSlice = createSlice({
             state.token = null
         },
         setFriends: (state, action) => {
-            if(state.user){
+            if( state.user ) {
                 const user = state.user as IUser
                 user.friends = action.payload.friends
-            }else{
+            } else {
                 console.error("user friends non-existent")
             }
         },
-        setPosts: (state,action) => {
+        setPosts: (state, action) => {
             state.posts = action.payload.posts
         },
-        setPost: (state,action) => {
+        setPost: (state, action) => {
             const updatePosts: IPost[] = state.posts.map((post: IPost) => {
-                if(post.id === action.payload.post.id){
+                if( post.id === action.payload.post.id ) {
                     return action.payload.post
                 }
                 return post
@@ -48,7 +48,7 @@ export const authSlice = createSlice({
 })
 
 // config the store
-const store= configureStore({
+const store = configureStore({
     reducer: {
         authSlice: authSlice.reducer
     }
