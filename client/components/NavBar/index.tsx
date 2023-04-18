@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+    Box,
     FormControl,
     IconButton,
     InputBase,
@@ -13,13 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import FlexBetween from "../FlexBetween";
 import { IPalette, IUser } from "../../lib/types";
 import { useRouter } from "next/router";
-import { DarkMode, Help, LightMode, Message, Notifications, Search } from "@mui/icons-material";
+import { Close, DarkMode, Help, LightMode, Menu, Message, Notifications, Search } from "@mui/icons-material";
 import { setLogout, setMode } from "../../state";
 
 const NavBar = () => {
     const [ isMobileMenuToggled, setIsMobileMenuToggled ] = useState(false);
     const dispatch = useDispatch();
-    const user = useSelector(( state: { user: IUser } ) => state.user);
+    const user = useSelector((state: { user: IUser }) => state.user);
     const router = useRouter();
     const isNonMobileScreen = useMediaQuery("(min-width: 1000px)");
 
@@ -34,7 +35,7 @@ const NavBar = () => {
 
     // const fullName = `${user.firstName} ${user.lastName}` ?? "User";
     const fullName = "User";
-    console.log(mode)
+
     return (
         <FlexBetween padding="1rem 6%" bgcolor={alt}>
             <FlexBetween gap="1.75rem">
@@ -105,7 +106,24 @@ const NavBar = () => {
                     </FormControl>
                 </FlexBetween>
             ) : (
-                <IconButton></IconButton>
+                <IconButton onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}>
+                    <Menu/>
+                </IconButton>
+            )}
+
+            {/*MOBILE NAV*/}
+            {isMobileMenuToggled && isMobileMenuToggled && (
+                <Box position="fixed" right="0" bottom="0" height="100%" zIndex="10" maxWidth="500px" minWidth="300px"
+                     bgcolor={background}>
+                    {/*CLOSE ICON*/}
+                    <Box display="flex" justifyContent="flex-end" p="1rem">
+                        <IconButton
+                            onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
+                        >
+                            <Close/>
+                        </IconButton>
+                    </Box>
+                </Box>
             )}
         </FlexBetween>
     );
