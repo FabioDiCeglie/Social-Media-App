@@ -18,8 +18,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
       <ThemeProvider theme={theme}>
           <CssBaseline />
-          <NavBar />
             <main className={rubik.className}>
+                <NavBar />
                 <Component {...pageProps} />
             </main>
       </ThemeProvider>
