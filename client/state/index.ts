@@ -1,9 +1,10 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { IPost, IUser } from "../lib/types";
 import { createWrapper } from "next-redux-wrapper";
+import Cookies from 'js-cookie'
 
 const initialState = {
-    mode: "light",
+    mode: Cookies.get("mode") || "light",
     user: null,
     token: null,
     posts: []
@@ -47,6 +48,7 @@ export const authSlice = createSlice({
         }
     }
 })
+
 
 // config the store
 const store = configureStore({
