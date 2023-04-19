@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { IPost, IUser } from "../lib/types";
+import { createWrapper } from "next-redux-wrapper";
 
 const initialState = {
     mode: "light",
@@ -52,5 +53,5 @@ const store = configureStore({
     reducer:  authSlice.reducer
 })
 
-export default store
+export const wrapper = createWrapper(() => store);
 export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } = authSlice.actions
