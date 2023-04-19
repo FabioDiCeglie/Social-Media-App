@@ -8,14 +8,12 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "../../theme";
 import NavBar from "../../components/NavBar";
-import Cookies from "js-cookie";
 
 const rubik = Rubik({ weight: ["400", "500", "700"], subsets: ["cyrillic"] });
 
 function App({ Component, pageProps }: AppProps) {
   const mode = useSelector((state: { mode: string }) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-  Cookies.set('mode', `${mode}`)
 
   return (
       <ThemeProvider theme={theme}>

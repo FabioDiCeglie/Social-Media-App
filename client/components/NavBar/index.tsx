@@ -16,6 +16,7 @@ import { IPalette, IUser } from "../../lib/types";
 import { useRouter } from "next/router";
 import { Close, DarkMode, Help, LightMode, Menu, Message, Notifications, Search } from "@mui/icons-material";
 import { setLogout, setMode } from "../../state";
+import Cookies from "js-cookie";
 
 const NavBar = () => {
     const [ isMobileMenuToggled, setIsMobileMenuToggled ] = useState(false);

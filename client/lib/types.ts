@@ -43,7 +43,7 @@ export type Like = {
 }
 
 export type IPalette = {
-    mode: PaletteMode;
+    mode: string;
     primary: PaletteColor;
     neutral: {
         dark: string;
