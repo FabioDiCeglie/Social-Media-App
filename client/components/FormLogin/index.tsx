@@ -43,7 +43,7 @@ const Form = () => {
     if (data) {
       dispatch(
         setLogin({
-          user: data.user,
+          user: data.login,
           token: data.token,
         })
       );
