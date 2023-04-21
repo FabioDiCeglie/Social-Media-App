@@ -1,6 +1,7 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import {configureStore, createSlice } from "@reduxjs/toolkit";
 import { IPost, IUser } from "../lib/types";
 import { createWrapper } from "next-redux-wrapper";
+import {nextReduxCookieMiddleware, wrapMakeStore} from "next-redux-cookie-wrapper";
 
 const initialState = {
     mode:  "light",
@@ -47,12 +48,16 @@ export const authSlice = createSlice({
         }
     }
 })
-
-
-// config the store
-const store = configureStore({
-    reducer:  authSlice.reducer
-})
-
-export const wrapper = createWrapper(() => store);
+const makeStore = wrapMakeStore(() =>
+    configureStore({
+        reducer: authSlice.reducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().prepend(
+                nextReduxCookieMiddleware({
+                    subtrees: ["my.subtree"],
+                })
+            ),
+    })
+);
+export const wrapper = createWrapper(makeStore, {debug: true});
 export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } = authSlice.actions
