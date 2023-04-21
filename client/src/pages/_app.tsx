@@ -15,7 +15,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 const rubik = Rubik({ weight: ["400", "500", "700"], subsets: ["cyrillic"] });
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4004/graphql',
+    uri: 'http://localhost:4020/graphql',
     cache: new InMemoryCache(),
 });
 
