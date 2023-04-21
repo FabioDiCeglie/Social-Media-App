@@ -34,5 +34,14 @@ export const typeDefs: DocumentNode = gql`
 
   type Mutation {
     addRemoveFriend(id: String, friendId: String): [Friend]
+    register(
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+      picturePath: String
+      location: String
+      occupation: String
+    ): User
   }
 `;
