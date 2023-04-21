@@ -16,7 +16,7 @@ export const typeDefs: DocumentNode = gql`
     firstName: String!
     lastName: String!
     email: String!
-    password: String!
+    password: String
     picturePath: String
     friends: [Friend]
     location: String

@@ -3,14 +3,17 @@ import { GraphQLError, GraphQLFieldResolver } from "graphql";
 import jwt from "jsonwebtoken";
 import { User } from "models/User";
 
-export const login: GraphQLFieldResolver<any, unknown> = async (_: unknown, args: {
-  email: string;
-  password: string;
-}) => {
+export const login: GraphQLFieldResolver<any, unknown> = async (
+  _: unknown,
+  args: {
+    email: string;
+    password: string;
+  }
+) => {
   try {
-    const { email, password: newPassword } = args;
+    const { email: userEmail, password: newPassword } = args;
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: userEmail });
     if (!user) return new GraphQLError(`User: ${user} does not exist`);
 
     const isMatch = await bcrypt.compare(newPassword, user.password);
@@ -18,9 +21,32 @@ export const login: GraphQLFieldResolver<any, unknown> = async (_: unknown, args
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
 
-    const { password, ...rest } = user;
+    const {
+      id,
+      firstName,
+      lastName,
+      email,
+      picturePath,
+      friends,
+      location,
+      occupation,
+      viewedProfile,
+      impressions,
+    } = user;
 
-    return { token: token, rest };
+    return {
+      id,
+      firstName,
+      lastName,
+      email,
+      picturePath,
+      friends,
+      location,
+      occupation,
+      viewedProfile,
+      token,
+      impressions,
+    };
   } catch (err) {
     return new GraphQLError(err as unknown as string);
   }
