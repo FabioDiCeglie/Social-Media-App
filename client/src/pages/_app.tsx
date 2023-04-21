@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Rubik } from "next/font/google";
 import { useSelector } from "react-redux";
-import {persistor, store} from "../../state";
+import { persistor, store } from "../../state";
 import { useMemo } from "react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
