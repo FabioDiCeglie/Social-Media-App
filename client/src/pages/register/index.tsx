@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { IPalette } from "../../../lib/types";
-import Form from "../../../components/FormLogin";
+import Form from "../../../components/FormRegister";
 
-const Register = () => {
+const Login = () => {
   const theme = useTheme();
   const palette = theme.palette as unknown as IPalette;
   const { background } = palette;
@@ -35,4 +35,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
