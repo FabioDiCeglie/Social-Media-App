@@ -1,7 +1,8 @@
 import {configureStore, createSlice } from "@reduxjs/toolkit";
 import { IPost, IUser } from "../lib/types";
-import { createWrapper } from "next-redux-wrapper";
-import {nextReduxCookieMiddleware, wrapMakeStore} from "next-redux-cookie-wrapper";
+import {persistStore, persistReducer} from 'redux-persist';
+import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "reduxjs-toolkit-persist";
+import storage from 'redux-persist/lib/storage';
 
 const initialState = {
     mode:  "light",
@@ -45,19 +46,27 @@ export const authSlice = createSlice({
             })
             // @ts-ignore
             state.posts = updatePosts
-        }
-    }
+        },
+    },
 })
-const makeStore = wrapMakeStore(() =>
-    configureStore({
-        reducer: authSlice.reducer,
-        middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().prepend(
-                nextReduxCookieMiddleware({
-                    subtrees: ["my.subtree"],
-                })
-            ),
-    })
-);
-export const wrapper = createWrapper(makeStore, {debug: true});
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const rootReducer = persistReducer(persistConfig, authSlice.reducer)
+
+const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
+});
+
+const persistor = persistStore(store);
+export { store, persistor };
 export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } = authSlice.actions
