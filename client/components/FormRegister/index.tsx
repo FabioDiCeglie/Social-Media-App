@@ -41,7 +41,7 @@ const Form = () => {
   const { background, neutral, primary } = palette as unknown as IPalette;
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
-  const register = async (
+  const handleFormSubmit = async (
     values: IRegister,
     onSubmitProps: FormikHelpers<any>
   ) => {
@@ -62,21 +62,13 @@ const Form = () => {
     );
 
     await savedUserResponse.json();
-    console.log("here", savedUserResponse.json());
     onSubmitProps.resetForm();
-  };
-
-  const handleFormSubmit = async (
-    values: unknown | IRegister,
-    onSubmitProps: FormikHelpers<any>
-  ) => {
-    console.log("HERE");
-    await register(values as IRegister, onSubmitProps);
+    router.push("/login");
   };
 
   return (
     <Formik
-      onSubmit={handleFormSubmit}
+      onSubmit={handleFormSubmit as unknown as any}
       initialValues={initialValuesRegister}
       validationSchema={registerSchema}
     >
