@@ -10,14 +10,21 @@ import { themeSettings } from "../../theme";
 import NavBar from "../../components/NavBar";
 import { PersistGate } from "redux-persist/integration/react";
 import withRedux from 'next-redux-wrapper';
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const rubik = Rubik({ weight: ["400", "500", "700"], subsets: ["cyrillic"] });
+
+const client = new ApolloClient({
+    uri: 'http://localhost:4004/graphql',
+    cache: new InMemoryCache(),
+});
 
 function App({ Component, pageProps }: AppProps) {
     const mode = useSelector((state: { mode: string }) => state.mode);
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return  (
+      <ApolloProvider client={client}>
       <PersistGate loading={<h1>Loading..</h1>} persistor={persistor}>
       <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -27,6 +34,7 @@ function App({ Component, pageProps }: AppProps) {
             </main>
       </ThemeProvider>
       </PersistGate>
+      </ApolloProvider>
   );
 }
 
