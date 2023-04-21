@@ -57,3 +57,20 @@ export type IPalette = {
         alt: string;
     }
 };
+
+export type IRegister = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    location: string;
+    occupation: string;
+    picture: {
+        name: string;
+    }
+}
+
+export type ILogin = {
+    email: string;
+    password: string;
+}
