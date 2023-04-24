@@ -10,10 +10,11 @@ import {
 import { Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
 import Dropzone from "react-dropzone";
-import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { IPalette, IRegister } from "../../lib/types";
 import FlexBetween from "../FlexBetween";
+import { useMutation } from "@apollo/client";
+import { SIGN_UP } from "../../lib/mutation";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -36,6 +37,7 @@ const initialValuesRegister = {
 };
 
 const Form = () => {
+  const [register, { loading, error, data }] = useMutation(SIGN_UP);
   const { palette } = useTheme();
   const router = useRouter();
   const { background, neutral, primary } = palette as unknown as IPalette;
@@ -45,6 +47,8 @@ const Form = () => {
     values: IRegister,
     onSubmitProps: FormikHelpers<any>
   ) => {
+    const { firstName, lastName, location, occupation, email, password } =
+      values;
     // this allows us to send form info with image
     const formData = new FormData();
     for (let value in values) {
@@ -52,16 +56,18 @@ const Form = () => {
       formData.append(value, values[value]);
     }
     formData.append("picturePath", values.picture.name);
+    register({
+      variables: {
+        firstName,
+        lastName,
+        location,
+        occupation,
+        picturePath: values.picture.name,
+        email,
+        password,
+      },
+    });
 
-    const savedUserResponse = await fetch(
-      "http://localhost:4004/auth/register",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-
-    await savedUserResponse.json();
     onSubmitProps.resetForm();
     router.push("/login");
   };
@@ -152,7 +158,12 @@ const Form = () => {
                   >
                     <input {...getInputProps()} />
                     {!values.picture ? (
-                      <p>Add Picture Here</p>
+                      <>
+                        <p>Add Picture Here</p>
+                        <p style={{ marginLeft: "32rem", fontSize: "0.8rem" }}>
+                          is required*
+                        </p>
+                      </>
                     ) : (
                       <FlexBetween>
                         <Typography>
