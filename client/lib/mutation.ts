@@ -24,19 +24,6 @@ export const SIGN_UP = gql`
       lastName
       email
       picturePath
-      friends {
-        id
-        firstName
-        lastName
-        occupation
-        location
-        picturePath
-      }
-      location
-      occupation
-      viewedProfile
-      token
-      impressions
     }
   }
 `;
