@@ -41,7 +41,7 @@ export const register: GraphQLFieldResolver<any, unknown> = async (
       viewedProfile: Math.floor(Math.random() * 100),
       impressions: Math.floor(Math.random() * 100),
     });
-    upload.single("picture");
+
     const savedUser = await newUser.save();
 
     return savedUser;

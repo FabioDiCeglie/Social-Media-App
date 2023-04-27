@@ -35,7 +35,7 @@ const Form = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const handleFormSubmit = async (
-    values: IRegister | ILogin,
+    values: ILogin,
     onSubmitProps: FormikHelpers<any>
   ) => {
     login({ variables: { email: values.email, password: values.password } });
