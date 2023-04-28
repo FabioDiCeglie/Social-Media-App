@@ -35,19 +35,20 @@ app.use(bodyParser.json({ limit: "30mb", strict: true }));
 app.use(urlencoded({ limit: "30mb", extended: true }));
 
 // Set up file storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/assets");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public/assets");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname);
+//   },
+// });
 
-export const upload = multer({ storage });
+// export const upload = multer({ storage });
 
 // Routes with files
-app.post("/auth/register", upload.single("picture"), register);
+// app.post("/auth/register", upload.single("picture"), register);
+app.post("/auth/register", register);
 
 const startApolloServer = async () => {
   await server.start();

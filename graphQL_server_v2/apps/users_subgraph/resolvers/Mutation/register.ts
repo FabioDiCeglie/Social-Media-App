@@ -1,7 +1,6 @@
 import { genSalt, hash } from "bcrypt";
 import { GraphQLError, GraphQLFieldResolver } from "graphql";
 import { User } from "models/User";
-import { upload } from "../..";
 
 export const register: GraphQLFieldResolver<any, unknown> = async (
   _: unknown,
