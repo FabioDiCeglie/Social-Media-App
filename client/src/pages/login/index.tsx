@@ -1,12 +1,20 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { IPalette } from "../../../lib/types";
 import Form from "../../../components/FormLogin";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
-const Register = () => {
+const Login = () => {
   const theme = useTheme();
   const palette = theme.palette as unknown as IPalette;
   const { background } = palette;
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+  const isAuth = useSelector((state: { token: string }) => state.token);
+  const router = useRouter();
+
+  if (isAuth) {
+    router.push("/");
+  }
 
   return (
     <Box width="100%" bgcolor={background.alt} p="1rem 6%" textAlign="center">
@@ -35,4 +43,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
