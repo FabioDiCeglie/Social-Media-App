@@ -44,7 +44,7 @@ const Form = () => {
       dispatch(
         setLogin({
           user: data.login,
-          token: data.token,
+          token: data.login.token,
         })
       );
       router.push("/");

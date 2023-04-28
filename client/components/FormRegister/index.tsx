@@ -45,6 +45,9 @@ const Form = () => {
     values: IRegister,
     onSubmitProps: FormikHelpers<any>
   ) => {
+    const { firstName, lastName, email, password, location, occupation } =
+      values;
+    // TODO: Check this later!
     // this allows us to send form info with image
     const formData = new FormData();
     for (let value in values) {
@@ -54,7 +57,15 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     await axios
-      .post("http://localhost:4004/auth/register", formData)
+      .post("http://localhost:4004/auth/register", {
+        firstName,
+        lastName,
+        email,
+        password,
+        picturePath: values.picture.name,
+        location,
+        occupation,
+      })
       .then(() => {
         onSubmitProps.resetForm();
         router.push("/login");
