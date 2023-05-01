@@ -22,6 +22,10 @@ describe("login", () => {
     });
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("should return the current user when user is logged in", async () => {
     jest.spyOn(User, "findOne").mockReturnValueOnce({
       id: "test-id",
@@ -54,5 +58,41 @@ describe("login", () => {
         firstName: "test-name",
       },
     });
+  });
+
+  test("should return user does not exist", async () => {
+    jest
+      .spyOn(User, "findOne")
+      .mockImplementation(() => Promise.resolve(false) as unknown as any);
+
+    const login = gql`
+      query {
+        login(email: "fabio@gmail.com", password: "test-password") {
+          id
+          firstName
+        }
+      }
+    `;
+
+    const res = await server.executeOperation(
+      { query: login },
+      { contextValue: () => {} }
+    );
+
+    assert(res.body.kind === "single");
+    expect(res.body.singleResult.errors).toEqual([
+      {
+        extensions: { code: "INTERNAL_SERVER_ERROR" },
+        locations: [{ column: 3, line: 2 }],
+        message: "User: fabio@gmail.com does not exist",
+        path: ["login"],
+      },
+    ]);
+  });
+
+  test("should return an error for an invalid password", async () => {
+    jest
+      .spyOn(bcrypt, "compare")
+      .mockImplementation(() => Promise.resolve(false));
   });
 });

@@ -14,7 +14,7 @@ export const login: GraphQLFieldResolver<any, unknown> = async (
     const { email: userEmail, password: newPassword } = args;
 
     const user = await User.findOne({ email: userEmail });
-    if (!user) return new GraphQLError(`User: ${user} does not exist`);
+    if (!user) return new GraphQLError(`User: ${userEmail} does not exist`);
 
     const isMatch = await bcrypt.compare(newPassword, user.password);
     if (!isMatch) return new GraphQLError(`Invalid password!`);
