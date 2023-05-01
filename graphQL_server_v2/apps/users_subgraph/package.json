@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --watch index.ts"
+    "start": "nodemon --watch index.ts",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Fabio DC <fabiodiceglie@icloud.com> (http://fabiodiceglie.com/)",
@@ -19,16 +20,22 @@
     "express": "4.18.2",
     "graphql-tag": "2.12.6",
     "helmet": "6.0.1",
+    "jest": "29.5.0",
     "jsonwebtoken": "9.0.0",
     "mongoose": "7.0.3",
     "morgan": "1.10.0",
-    "multer": "1.4.5-lts.1"
+    "multer": "1.4.5-lts.1",
+    "nock": "13.3.1",
+    "ts-node": "10.9.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "7.21.5",
+    "@babel/preset-typescript": "7.21.5",
     "@types/bcrypt": "5.0.0",
     "@types/body-parser": "1.19.2",
     "@types/cors": "2.8.13",
     "@types/express": "4.17.17",
+    "@types/jest": "29.5.1",
     "@types/jsonwebtoken": "9.0.1",
     "@types/morgan": "1.9.4",
     "@types/multer": "1.4.7",
