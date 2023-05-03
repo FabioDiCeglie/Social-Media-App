@@ -73,3 +73,7 @@ export type ILogin = {
   email: string;
   password: string;
 };
+
+export type ITheme = {
+  palette: IPalette;
+};
