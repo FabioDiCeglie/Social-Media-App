@@ -11,7 +11,6 @@ import { GET_USER } from "../../lib/query";
 import { ITheme } from "../../lib/types";
 import FlexBetween from "../FlexBetween";
 import Loading from "../Loading";
-import NotFound from "../NotFound";
 import UserImage from "../UserImage";
 import WidgetWrapper from "../WidgetWrapper";
 
@@ -22,7 +21,9 @@ const UserWidget = ({
   userId: string;
   picturePath: string;
 }) => {
-  const { loading, error, data } = useQuery(GET_USER);
+  const { loading, error, data } = useQuery(GET_USER, {
+    variables: { userId },
+  });
   const { palette }: ITheme = useTheme();
   const router = useRouter();
   const dark = palette.neutral.dark;
@@ -30,7 +31,7 @@ const UserWidget = ({
   const main = palette.neutral.main;
 
   if (loading) return <Loading />;
-  if (error) return <NotFound />;
+  if (error) return <h1>{`${error}`}</h1>;
 
   const {
     firstName,
@@ -40,10 +41,11 @@ const UserWidget = ({
     viewedProfile,
     impressions,
     friends,
-  } = data;
+  } = data.user;
 
   return (
-    <WidgetWrapper theme={palette as unknown as any}>
+    // @ts-ignore
+    <WidgetWrapper>
       {/* FIRST ROW */}
       <FlexBetween
         gap="0.5rem"
@@ -66,7 +68,9 @@ const UserWidget = ({
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length} friends</Typography>
+            <Typography color={medium}>
+              {friends?.length > 0 ? friends.length : "Any"} friends
+            </Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
