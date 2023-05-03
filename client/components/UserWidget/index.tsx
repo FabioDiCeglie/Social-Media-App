@@ -31,7 +31,7 @@ const UserWidget = ({
   const main = palette.neutral.main;
 
   if (loading) return <Loading />;
-  if (error) return <h1>{`${error}`}</h1>;
+  if (error) return <></>;
 
   const {
     firstName,
