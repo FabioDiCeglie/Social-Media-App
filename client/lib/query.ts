@@ -24,3 +24,29 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const GET_USER = gql`
+  query User($userId: String) {
+    user(id: $userId) {
+      email
+      firstName
+      id
+      impressions
+      lastName
+      location
+      occupation
+      password
+      picturePath
+      token
+      viewedProfile
+      friends {
+        picturePath
+        occupation
+        location
+        lastName
+        id
+        firstName
+      }
+    }
+  }
+`;

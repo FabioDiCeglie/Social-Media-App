@@ -5,7 +5,7 @@ const UserImage = ({
   size = "60px",
 }: {
   image: string;
-  size: string;
+  size?: string;
 }) => {
   return (
     <Box width={size} height={size}>
