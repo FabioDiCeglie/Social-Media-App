@@ -3,12 +3,12 @@ import bodyParser, { urlencoded } from "body-parser";
 import cors from "cors";
 import { json } from "express";
 import helmet, { crossOriginResourcePolicy } from "helmet";
-import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import multer from "multer";
 import { register } from "./rest";
 import { app, httpServer, server } from "./server";
+import jwt from "jsonwebtoken";
 require("dotenv").config();
 
 // This line of code is a logging middleware that logs HTTP requests and responses
@@ -58,7 +58,7 @@ const startApolloServer = async () => {
     json(),
     expressMiddleware(server, {
       context: async ({ req, res }) => {
-        let token = req.header("Authorization");
+        let token = req.header("authorization");
 
         if (!token) {
           return "";

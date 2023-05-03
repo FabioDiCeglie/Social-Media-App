@@ -35,7 +35,12 @@ const startApolloServer = async () => {
     "/graphql",
     cors<cors.CorsRequest>(),
     json(),
-    expressMiddleware(server)
+    expressMiddleware(server, {
+      context: async ({ req }) => ({
+        headers: req.headers,
+        authorization: req.header("Authorization"),
+      }),
+    })
   );
 
   const port = 4020;
