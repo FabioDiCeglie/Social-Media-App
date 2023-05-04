@@ -1,0 +1,90 @@
+import { useQuery } from "@apollo/client";
+import { GET_POSTS, GET_USER_POSTS } from "../../lib/query";
+import { IPost } from "../../lib/types";
+import Loading from "../Loading";
+import PostWidget from "../PostWidget";
+
+const PostsWidget = ({
+  userId,
+  isProfile = false,
+}: {
+  userId: string;
+  isProfile: boolean;
+}) => {
+  if (isProfile) {
+    const { loading, error, data } = useQuery(GET_USER_POSTS, {
+      variables: { userId },
+    });
+
+    if (loading) return <Loading />;
+    return (
+      <>
+        {data.posts.map(
+          ({
+            id,
+            userId,
+            firstName,
+            lastName,
+            description,
+            location,
+            picturePath,
+            userPicturePath,
+            likes,
+            comments,
+          }: IPost) => (
+            <PostWidget
+              key={id}
+              postId={id}
+              postUserId={userId}
+              name={`${firstName} ${lastName}`}
+              description={description}
+              location={location}
+              picturePath={picturePath}
+              userPicturePath={userPicturePath}
+              likes={likes}
+              comments={comments}
+            />
+          )
+        )}
+      </>
+    );
+  }
+
+  const { loading, error, data } = useQuery(GET_POSTS);
+
+  if (loading) return <Loading />;
+
+  return (
+    <>
+      {data.feedPosts.map(
+        ({
+          id,
+          userId,
+          firstName,
+          lastName,
+          description,
+          location,
+          picturePath,
+          userPicturePath,
+          likes,
+          comments,
+        }: IPost) => (
+          <PostWidget
+            key={id}
+            postId={id}
+            postUserId={userId}
+            name={`${firstName} ${lastName}`}
+            description={description}
+            location={location}
+            picturePath={picturePath}
+            userPicturePath={userPicturePath}
+            likes={likes}
+            comments={comments}
+          />
+        )
+      )}
+    </>
+  );
+};
+
+export default PostsWidget;
