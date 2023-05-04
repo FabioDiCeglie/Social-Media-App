@@ -50,3 +50,41 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const GET_POSTS = gql`
+  query FeedPosts {
+    feedPosts {
+      comments
+      description
+      firstName
+      id
+      lastName
+      likes {
+        userId
+      }
+      location
+      picturePath
+      userId
+      userPicturePath
+    }
+  }
+`;
+
+export const GET_USER_POSTS = gql`
+  query userPosts($userId: String!) {
+    userPosts(userId: $userId) {
+      comments
+      description
+      firstName
+      id
+      lastName
+      likes {
+        userId
+      }
+      location
+      picturePath
+      userId
+      userPicturePath
+    }
+  }
+`;
