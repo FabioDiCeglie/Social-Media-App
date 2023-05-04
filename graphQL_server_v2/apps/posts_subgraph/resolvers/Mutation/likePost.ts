@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
 import { GraphQLError } from "graphql";
 import { verifyTokenContext } from "lib/helpers";
 import { MyContext } from "lib/types";
 import { Post } from "models/Post";
 
-export const likePost = async (_: unknown,
+export const likePost = async (
+  _: unknown,
   args: { id: string; userId: string },
   contextValue: unknown
 ) => {

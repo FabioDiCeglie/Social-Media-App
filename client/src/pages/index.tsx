@@ -4,6 +4,7 @@ import { Box, useMediaQuery } from "@mui/material";
 import { IUser } from "../../lib/types";
 import UserWidget from "../../components/UserWidget";
 import MyPostWidget from "../../components/MyPostWidget";
+import PostsWidget from "../../components/PostsWidget";
 
 const Home = () => {
   const isAuth = useSelector((state: { token: string }) => state.token);
@@ -32,6 +33,8 @@ const Home = () => {
         mt={isNonMobileScreens ? undefined : "2rem"}
       >
         <MyPostWidget picturePath={picturePath} />
+        {/* @ts-ignore */}
+        <PostsWidget userId={id} />
       </Box>
       {isNonMobileScreens && <Box flexBasis="26%"></Box>}
     </Box>
