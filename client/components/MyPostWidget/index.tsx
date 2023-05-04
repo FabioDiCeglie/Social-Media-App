@@ -60,6 +60,7 @@ const MyPostWidget = ({ picturePath }: { picturePath: string }) => {
     setImage(null);
     setPost("");
   };
+
   return (
     // @ts-ignore
     <WidgetWrapper>
