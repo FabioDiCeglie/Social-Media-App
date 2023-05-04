@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Box, useMediaQuery } from "@mui/material";
 import { IUser } from "../../lib/types";
 import UserWidget from "../../components/UserWidget";
+import MyPostWidget from "../../components/MyPostWidget";
 
 const Home = () => {
   const isAuth = useSelector((state: { token: string }) => state.token);
@@ -26,6 +27,13 @@ const Home = () => {
       <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
         <UserWidget userId={id} picturePath={picturePath} />
       </Box>
+      <Box
+        flexBasis={isNonMobileScreens ? "42%" : undefined}
+        mt={isNonMobileScreens ? undefined : "2rem"}
+      >
+        <MyPostWidget picturePath={picturePath} />
+      </Box>
+      {isNonMobileScreens && <Box flexBasis="26%"></Box>}
     </Box>
   );
 };
