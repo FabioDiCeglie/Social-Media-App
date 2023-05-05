@@ -7,13 +7,12 @@ import {
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { LIKE_POST } from "../../lib/mutation";
 import { ITheme, Like } from "../../lib/types";
 import FlexBetween from "../FlexBetween";
 import Friend from "../Friend";
-import WidgetWrapper from "../WidgetWrapper";
 import Loading from "../Loading";
+import WidgetWrapper from "../WidgetWrapper";
 
 type PostWidgetProps = {
   postId: string;
@@ -38,15 +37,16 @@ const PostWidget = ({
   likes,
   comments,
 }: PostWidgetProps) => {
-  const [likePost, { loading, error, data }] = useMutation(LIKE_POST, {
+  const [likePost, { loading }] = useMutation(LIKE_POST, {
     variables: { postId, userId: postUserId },
   });
 
   const [isComments, setIsComments] = useState(false);
-  const loggedInUserId = useSelector(
-    (state: { user: { id: string } }) => state.user.id
+
+  const userLike = likes.filter((like) =>
+    like.id === postUserId ? true : false
   );
-  const isLiked = Boolean(likes[loggedInUserId as unknown as any]);
+  const isLiked = userLike.length > 0;
   const likeCount = Object.keys(likes).length;
 
   const { palette }: ITheme = useTheme();
