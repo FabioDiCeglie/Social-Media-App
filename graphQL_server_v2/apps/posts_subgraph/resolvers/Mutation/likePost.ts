@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql";
 import { verifyTokenContext } from "lib/helpers";
-import { MyContext } from "lib/types";
+import { IPost, MyContext } from "lib/types";
 import { Post } from "models/Post";
 
 export const likePost = async (
@@ -29,7 +29,14 @@ export const likePost = async (
       { new: true }
     );
 
-    return updatedPost;
+    const newLikes = [...(post?.likes as unknown as IPost["likes"])].map(
+      ([id, status]: any) => ({
+        id,
+        status,
+      })
+    );
+    // @ts-ignore
+    return { ...updatedPost?._doc, likes: newLikes, id: updatedPost?._id };
   } catch (err) {
     return new GraphQLError(err as unknown as string);
   }
