@@ -16,7 +16,6 @@ import WidgetWrapper from "../WidgetWrapper";
 import Loading from "../Loading";
 
 type PostWidgetProps = {
-  key: string;
   postId: string;
   postUserId: string;
   name: string;
@@ -29,7 +28,6 @@ type PostWidgetProps = {
 };
 
 const PostWidget = ({
-  key,
   postId,
   postUserId,
   name,
@@ -75,13 +73,13 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`http://localhost:4010/assets/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={() => likePost}>
+            <IconButton onClick={() => likePost()}>
               {isLiked ? (
                 <FavoriteOutlined sx={{ color: primary }} />
               ) : (

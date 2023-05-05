@@ -3,6 +3,7 @@ import { GET_POSTS, GET_USER_POSTS } from "../../lib/query";
 import { IPost } from "../../lib/types";
 import Loading from "../Loading";
 import PostWidget from "../PostWidget";
+import React from "react";
 
 const PostsWidget = ({
   userId,
@@ -32,18 +33,19 @@ const PostsWidget = ({
             likes,
             comments,
           }: IPost) => (
-            <PostWidget
-              key={id}
-              postId={id}
-              postUserId={userId}
-              name={`${firstName} ${lastName}`}
-              description={description}
-              location={location}
-              picturePath={picturePath}
-              userPicturePath={userPicturePath}
-              likes={likes}
-              comments={comments}
-            />
+            <React.Fragment key={id}>
+              <PostWidget
+                postId={id}
+                postUserId={userId}
+                name={`${firstName} ${lastName}`}
+                description={description}
+                location={location}
+                picturePath={picturePath}
+                userPicturePath={userPicturePath}
+                likes={likes}
+                comments={comments}
+              />
+            </React.Fragment>
           )
         )}
       </>
@@ -69,18 +71,19 @@ const PostsWidget = ({
           likes,
           comments,
         }: IPost) => (
-          <PostWidget
-            key={id}
-            postId={id}
-            postUserId={userId}
-            name={`${firstName} ${lastName}`}
-            description={description}
-            location={location}
-            picturePath={picturePath}
-            userPicturePath={userPicturePath}
-            likes={likes}
-            comments={comments}
-          />
+          <React.Fragment key={id}>
+            <PostWidget
+              postId={id}
+              postUserId={userId}
+              name={`${firstName} ${lastName}`}
+              description={description}
+              location={location}
+              picturePath={picturePath}
+              userPicturePath={userPicturePath}
+              likes={likes}
+              comments={comments}
+            />
+          </React.Fragment>
         )
       )}
     </>
