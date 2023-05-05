@@ -37,7 +37,7 @@ const PostWidget = ({
   likes,
   comments,
 }: PostWidgetProps) => {
-  const [likePost, { loading }] = useMutation(LIKE_POST, {
+  const [likePost] = useMutation(LIKE_POST, {
     variables: { postId, userId: postUserId },
   });
 
@@ -52,8 +52,6 @@ const PostWidget = ({
   const { palette }: ITheme = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
-
-  if (loading) return <Loading />;
 
   return (
     // @ts-ignore
