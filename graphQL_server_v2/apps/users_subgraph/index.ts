@@ -1,7 +1,7 @@
 import { expressMiddleware } from "@apollo/server/express4";
 import bodyParser, { urlencoded } from "body-parser";
 import cors from "cors";
-import { json } from "express";
+import express, { json } from "express";
 import helmet, { crossOriginResourcePolicy } from "helmet";
 import mongoose from "mongoose";
 import morgan from "morgan";
@@ -9,6 +9,7 @@ import multer from "multer";
 import { register } from "./rest";
 import { app, httpServer, server } from "./server";
 import jwt from "jsonwebtoken";
+const path = require("path");
 require("dotenv").config();
 
 // This line of code is a logging middleware that logs HTTP requests and responses
@@ -34,21 +35,22 @@ app.use(bodyParser.json({ limit: "30mb", strict: true }));
 // It also limits the request body size to 30MB and allows nested objects in the URL-encoded data.
 app.use(urlencoded({ limit: "30mb", extended: true }));
 
-// Set up file storage
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "public/assets");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.originalname);
-//   },
-// });
+app.use(express.static(path.join(__dirname, "public")));
 
-// export const upload = multer({ storage });
+// Set up file storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/assets");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+export const upload = multer({ storage });
 
 // Routes with files
-// app.post("/auth/register", upload.single("picture"), register);
-app.post("/auth/register", register);
+app.post("/auth/register", upload.single("picture"), register);
 
 const startApolloServer = async () => {
   await server.start();

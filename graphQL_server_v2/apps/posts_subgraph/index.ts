@@ -1,7 +1,7 @@
 import { expressMiddleware } from "@apollo/server/express4";
 import bodyParser, { urlencoded } from "body-parser";
 import cors from "cors";
-import { json } from "express";
+import express, { json } from "express";
 import helmet, { crossOriginResourcePolicy } from "helmet";
 import jwt from "jsonwebtoken";
 import { verifyToken } from "lib/helpers";
@@ -10,6 +10,7 @@ import morgan from "morgan";
 import multer from "multer";
 import { createPost } from "./rest";
 import { app, httpServer, server } from "./server";
+const path = require("path");
 require("dotenv").config();
 
 // This line of code is a logging middleware that logs HTTP requests and responses
@@ -34,6 +35,8 @@ app.use(bodyParser.json({ limit: "30mb", strict: true }));
 // the req.body property of the request object.
 // It also limits the request body size to 30MB and allows nested objects in the URL-encoded data.
 app.use(urlencoded({ limit: "30mb", extended: true }));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 // Set up file storage
 const storage = multer.diskStorage({

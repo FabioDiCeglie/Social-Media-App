@@ -14,7 +14,7 @@ const UserImage = ({
         width={size}
         height={size}
         alt="user"
-        src={`http://localhost:4004/assets/${image}`}
+        src={`http://localhost:4010/assets/${image}`}
       />
     </Box>
   );
