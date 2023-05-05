@@ -3,7 +3,8 @@ import type { DocumentNode } from "graphql/language/ast";
 
 export const typeDefs: DocumentNode = gql`
   type Like {
-    userId: Boolean
+    id: ID
+    status: Boolean
   }
 
   type Post {

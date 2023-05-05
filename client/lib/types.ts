@@ -38,7 +38,8 @@ export type IPost = {
 };
 
 export type Like = {
-  userId: boolean;
+  id: string;
+  status: boolean;
 };
 
 export type IPalette = {

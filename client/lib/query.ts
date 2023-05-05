@@ -60,7 +60,8 @@ export const GET_POSTS = gql`
       id
       lastName
       likes {
-        userId
+        id
+        status
       }
       location
       picturePath

@@ -1,14 +1,15 @@
 import { gql } from "@apollo/client";
 
 export const LIKE_POST = gql`
-  mutation Mutation($likePostId: String!, $userId: String!) {
-    likePost(id: $likePostId, userId: $userId) {
+  mutation Mutation($postId: String!, $userId: String!) {
+    likePost(id: $postId, userId: $userId) {
       description
       firstName
       id
       lastName
       likes {
-        userId
+        id
+        status
       }
       location
       picturePath
