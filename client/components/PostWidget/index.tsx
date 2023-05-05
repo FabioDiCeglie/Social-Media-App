@@ -11,8 +11,9 @@ import { useSelector } from "react-redux";
 import { LIKE_POST } from "../../lib/mutation";
 import { ITheme, Like } from "../../lib/types";
 import FlexBetween from "../FlexBetween";
-// import Friend from "../Friend";
+import Friend from "../Friend";
 import WidgetWrapper from "../WidgetWrapper";
+import Loading from "../Loading";
 
 type PostWidgetProps = {
   key: string;
@@ -54,15 +55,17 @@ const PostWidget = ({
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
+  if (loading) return <Loading />;
+
   return (
     // @ts-ignore
     <WidgetWrapper m="2rem 0">
-      {/* <Friend
+      <Friend
         friendId={postUserId}
         name={name}
         subtitle={location}
         userPicturePath={userPicturePath}
-      /> */}
+      />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
       </Typography>
