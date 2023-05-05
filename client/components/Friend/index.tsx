@@ -1,14 +1,13 @@
+import { useMutation, useQuery } from "@apollo/client";
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { ADD_REMOVE_FRIEND } from "../../lib/mutation";
+import { GET_USER } from "../../lib/query";
+import { ITheme, IUser } from "../../lib/types";
 import FlexBetween from "../FlexBetween";
 import UserImage from "../UserImage";
-import { ITheme, IUser } from "../../lib/types";
-import { ADD_REMOVE_FRIEND } from "../../lib/mutation";
-import { useMutation } from "@apollo/client";
-import { GET_POSTS, GET_USER } from "../../lib/query";
-import { setFriends } from "../../state";
 
 type FriendProps = {
   friendId: string;
@@ -18,14 +17,15 @@ type FriendProps = {
 };
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }: FriendProps) => {
-  const { id, friends } = useSelector((state: { user: IUser }) => state.user);
-  const [addRemoveFriend, { loading, error, data }] = useMutation(
-    ADD_REMOVE_FRIEND,
-    {
-      variables: { friendId: friendId, userId: id },
-      refetchQueries: [GET_USER, "User"],
-    }
-  );
+  const { id } = useSelector((state: { user: IUser }) => state.user);
+  const { data } = useQuery(GET_USER, {
+    variables: { userId: id },
+  });
+  const [addRemoveFriend] = useMutation(ADD_REMOVE_FRIEND, {
+    variables: { friendId: friendId, userId: id },
+    refetchQueries: [GET_USER, "User"],
+  });
+
   const router = useRouter();
 
   const { palette }: ITheme = useTheme();
@@ -34,9 +34,11 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }: FriendProps) => {
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
-  const isFriend = friends.find((friend) => friend.id === friendId);
+  const isFriend = data?.user.friends.find(
+    (friend: IUser["friends"][0]) => friend.id === friendId
+  );
   const isMyPost = friendId === id;
-  console.log(!loading && { friends: data?.addRemoveFriend });
+
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">
@@ -44,7 +46,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }: FriendProps) => {
         <Box
           onClick={() => {
             router.push(`/profile/${friendId}`);
-            // router.push(0);
           }}
         >
           <Typography
