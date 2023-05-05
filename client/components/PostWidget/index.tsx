@@ -39,7 +39,7 @@ const PostWidget = ({
   comments,
 }: PostWidgetProps) => {
   const [likePost, { loading, error, data }] = useMutation(LIKE_POST, {
-    variables: { id: postId, userId: postUserId },
+    variables: { postId, userId: postUserId },
   });
 
   const [isComments, setIsComments] = useState(false);
