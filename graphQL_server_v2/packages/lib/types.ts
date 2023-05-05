@@ -25,3 +25,21 @@ export type IUser = {
 export type MyContext = {
   token: string;
 };
+
+export type IPost = {
+  id: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  location: string;
+  description: string;
+  picturePath: string;
+  userPicturePath: string;
+  likes: [Like];
+  comments: [string];
+};
+
+export type Like = {
+  id: string;
+  status: boolean;
+};
