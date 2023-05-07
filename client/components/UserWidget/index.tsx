@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import {
   EditOutlined,
   LocationOnOutlined,
@@ -7,31 +6,17 @@ import {
 } from "@mui/icons-material";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import { GET_USER } from "../../lib/query";
-import { ITheme } from "../../lib/types";
+import { ITheme, IUser } from "../../lib/types";
 import FlexBetween from "../FlexBetween";
-import Loading from "../Loading";
 import UserImage from "../UserImage";
 import WidgetWrapper from "../WidgetWrapper";
 
-const UserWidget = ({
-  userId,
-  picturePath,
-}: {
-  userId: string;
-  picturePath: string;
-}) => {
-  const { loading, error, data } = useQuery(GET_USER, {
-    variables: { userId },
-  });
+const UserWidget = ({ user, userId }: { user: IUser; userId: string }) => {
   const { palette }: ITheme = useTheme();
   const router = useRouter();
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
-
-  if (loading) return <Loading />;
-  if (error) return <></>;
 
   const {
     firstName,
@@ -41,7 +26,8 @@ const UserWidget = ({
     viewedProfile,
     impressions,
     friends,
-  } = data.user;
+    picturePath,
+  } = user;
 
   return (
     // @ts-ignore
