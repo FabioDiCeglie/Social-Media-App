@@ -5,6 +5,7 @@ import { IUser } from "../../lib/types";
 import UserWidget from "../../components/UserWidget";
 import MyPostWidget from "../../components/MyPostWidget";
 import PostsWidget from "../../components/PostsWidget";
+import AdvertWidget from "../../components/AdvertWidget";
 
 const Home = () => {
   const isAuth = useSelector((state: { token: string }) => state.token);
@@ -35,7 +36,11 @@ const Home = () => {
         <MyPostWidget picturePath={picturePath} />
         <PostsWidget userId={id} isProfile={false} />
       </Box>
-      {isNonMobileScreens && <Box flexBasis="26%"></Box>}
+      {isNonMobileScreens && (
+        <Box flexBasis="26%">
+          <AdvertWidget />
+        </Box>
+      )}
     </Box>
   );
 };
