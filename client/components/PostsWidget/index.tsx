@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
+import React from "react";
 import { GET_POSTS, GET_USER_POSTS } from "../../lib/query";
 import { IPost } from "../../lib/types";
 import Loading from "../Loading";
 import PostWidget from "../PostWidget";
-import React from "react";
 
 const PostsWidget = ({
   userId,

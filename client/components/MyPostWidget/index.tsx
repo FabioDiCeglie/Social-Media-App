@@ -1,7 +1,8 @@
+import { useQuery } from "@apollo/client";
 import {
-  EditOutlined,
-  DeleteOutlined,
   AttachFileOutlined,
+  DeleteOutlined,
+  EditOutlined,
   GifBoxOutlined,
   ImageOutlined,
   MicOutlined,
@@ -9,30 +10,30 @@ import {
 } from "@mui/icons-material";
 import {
   Box,
-  Divider,
-  Typography,
-  InputBase,
-  useTheme,
   Button,
+  Divider,
   IconButton,
+  InputBase,
+  Typography,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import FlexBetween from "../FlexBetween";
+import axios from "axios";
+import { useState } from "react";
 import Dropzone from "react-dropzone";
+import { useSelector } from "react-redux";
+import { GET_POSTS } from "../../lib/query";
+import { ITheme, IUser } from "../../lib/types";
+import FlexBetween from "../FlexBetween";
 import UserImage from "../UserImage";
 import WidgetWrapper from "../WidgetWrapper";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "../../state";
-import { ITheme, IUser } from "../../lib/types";
-import axios from "axios";
 
 type Image = {
   name: string;
 };
 
 const MyPostWidget = ({ picturePath }: { picturePath: string }) => {
-  const dispatch = useDispatch();
+  const { loading, error, data, refetch } = useQuery(GET_POSTS);
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
@@ -52,11 +53,10 @@ const MyPostWidget = ({ picturePath }: { picturePath: string }) => {
       formData.append("picturePath", (image as Image).name);
     }
 
-    const response = await axios.post(`http://localhost:4010/posts`, formData, {
+    await axios.post(`http://localhost:4010/posts`, formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    const posts = response.data;
-    dispatch(setPosts({ posts }));
+    refetch();
     setImage(null);
     setPost("");
   };

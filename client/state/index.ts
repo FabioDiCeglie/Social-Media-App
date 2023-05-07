@@ -15,7 +15,6 @@ const initialState = {
   mode: "light",
   user: null,
   token: null,
-  posts: [],
 };
 
 export const authSlice = createSlice({
@@ -32,27 +31,6 @@ export const authSlice = createSlice({
     setLogout: (state) => {
       state.user = null;
       state.token = null;
-    },
-    setFriends: (state, action) => {
-      if (state.user) {
-        const user = state.user as IUser;
-        user.friends = action.payload.friends;
-      } else {
-        console.error("user friends non-existent");
-      }
-    },
-    setPosts: (state, action) => {
-      state.posts = action.payload.posts;
-    },
-    setPost: (state, action) => {
-      const updatePosts: IPost[] = state.posts.map((post: IPost) => {
-        if (post.id === action.payload.post.id) {
-          return action.payload.post;
-        }
-        return post;
-      });
-      // @ts-ignore
-      state.posts = updatePosts;
     },
   },
 });
@@ -76,5 +54,4 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 export { store, persistor };
-export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } =
-  authSlice.actions;
+export const { setMode, setLogin, setLogout } = authSlice.actions;
