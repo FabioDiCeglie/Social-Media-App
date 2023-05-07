@@ -17,6 +17,9 @@ const Profile = () => {
   const { loading, error, data } = useQuery(GET_USER, {
     variables: { userId },
   });
+  const isUser = useSelector(
+    (state: { user: { id: string } }) => state.user.id
+  );
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   if (loading) return <Loading />;
@@ -41,7 +44,7 @@ const Profile = () => {
         flexBasis={isNonMobileScreens ? "42%" : undefined}
         mt={isNonMobileScreens ? undefined : "2rem"}
       >
-        <MyPostWidget picturePath={user.picturePath} />
+        {isUser === userId && <MyPostWidget picturePath={user.picturePath} />}
         <Box m="2rem 0" />
         <PostsWidget userId={userId} isProfile={true} />
       </Box>
