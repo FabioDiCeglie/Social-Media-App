@@ -33,7 +33,11 @@ const UserWidget = ({ user, userId }: { user: IUser; userId: string }) => {
     // @ts-ignore
     <WidgetWrapper>
       {/* FIRST ROW */}
-      <FlexBetween gap="0.5rem" pb="1.1rem" onClick={() => router.push(`/me`)}>
+      <FlexBetween
+        gap="0.5rem"
+        pb="1.1rem"
+        onClick={() => router.push(`/me/${userId}`)}
+      >
         <FlexBetween gap="1rem">
           <UserImage image={picturePath} />
           <Box>

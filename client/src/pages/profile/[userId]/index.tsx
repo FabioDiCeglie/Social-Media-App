@@ -17,12 +17,7 @@ const Profile = () => {
   const { loading, error, data } = useQuery(GET_USER, {
     variables: { userId },
   });
-  const isAuth = useSelector((state: { token: string }) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-
-  if (!isAuth) {
-    router.push("/login");
-  }
 
   if (loading) return <Loading />;
   if (error) return <></>;

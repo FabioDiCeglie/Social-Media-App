@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import Profile from "@/pages/profile/[userId]";
 
 const Me = () => {
   const isAuth = useSelector((state: { token: string }) => state.token);
@@ -8,11 +9,7 @@ const Me = () => {
   if (!isAuth) {
     router.push("/login");
   }
-  return (
-    <>
-      <h1>Ciao me</h1>
-    </>
-  );
+  return <Profile />;
 };
 
 export default Me;
