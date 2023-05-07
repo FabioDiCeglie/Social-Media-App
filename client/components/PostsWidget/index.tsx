@@ -20,7 +20,7 @@ const PostsWidget = ({
     if (loading) return <Loading />;
     return (
       <>
-        {data.posts.map(
+        {data.userPosts.map(
           ({
             id,
             userId,
