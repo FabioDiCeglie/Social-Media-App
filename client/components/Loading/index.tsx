@@ -1,4 +1,3 @@
-import React from "react";
 import "./Loading.module.css";
 
 const Loading = () => {

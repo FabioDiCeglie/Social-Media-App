@@ -7,11 +7,10 @@ import {
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
-import { LIKE_POST } from "../../lib/mutation";
-import { ITheme, Like } from "../../lib/types";
+import { LIKE_POST } from "@/lib/mutation";
+import { ITheme, Like } from "@/lib/types";
 import FlexBetween from "../FlexBetween";
 import Friend from "../Friend";
-import Loading from "../Loading";
 import WidgetWrapper from "../WidgetWrapper";
 
 type PostWidgetProps = {

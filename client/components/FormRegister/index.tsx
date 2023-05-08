@@ -12,7 +12,7 @@ import { Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
 import Dropzone from "react-dropzone";
 import * as yup from "yup";
-import { IPalette, IRegister } from "../../lib/types";
+import { IPalette, IRegister } from "@/lib/types";
 import FlexBetween from "../FlexBetween";
 
 const registerSchema = yup.object().shape({

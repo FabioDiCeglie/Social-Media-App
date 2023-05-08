@@ -9,11 +9,11 @@ import {
 import { Formik, FormikHelpers } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../../state";
+import { setLogin } from "@/state";
 import { useRouter } from "next/router";
-import { ILogin, IPalette, IRegister } from "../../lib/types";
+import { ILogin, IPalette, IRegister } from "@/lib/types";
 import { useLazyQuery } from "@apollo/client";
-import { LOGIN } from "../../lib/query";
+import { LOGIN } from "@/lib/query";
 import * as React from "react";
 
 const loginSchema = yup.object().shape({

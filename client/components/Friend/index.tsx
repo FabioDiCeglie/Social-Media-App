@@ -3,9 +3,9 @@ import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { ADD_REMOVE_FRIEND } from "../../lib/mutation";
-import { GET_USER } from "../../lib/query";
-import { ITheme, IUser } from "../../lib/types";
+import { ADD_REMOVE_FRIEND } from "@/lib/mutation";
+import { GET_USER } from "@/lib/query";
+import { ITheme, IUser } from "@/lib/types";
 import FlexBetween from "../FlexBetween";
 import UserImage from "../UserImage";
 

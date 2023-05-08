@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import FlexBetween from "../FlexBetween";
-import { IPalette, IUser } from "../../lib/types";
+import { IPalette, IUser } from "@/lib/types";
 import { useRouter } from "next/router";
 import {
   Close,
@@ -24,7 +24,7 @@ import {
   Notifications,
   Search,
 } from "@mui/icons-material";
-import { setLogout, setMode } from "../../state";
+import { setLogout, setMode } from "@/state";
 
 const NavBar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);

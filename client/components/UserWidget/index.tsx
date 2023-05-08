@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import { ITheme, IUser } from "../../lib/types";
+import { ITheme, IUser } from "@/lib/types";
 import FlexBetween from "../FlexBetween";
 import UserImage from "../UserImage";
 import WidgetWrapper from "../WidgetWrapper";

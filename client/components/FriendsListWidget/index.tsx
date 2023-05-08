@@ -1,5 +1,5 @@
 import React from "react";
-import { ITheme, IUser } from "../../lib/types";
+import { ITheme, IUser } from "@/lib/types";
 import WidgetWrapper from "../WidgetWrapper";
 import { Box, Typography, useTheme } from "@mui/material";
 import Friend from "../Friend";
