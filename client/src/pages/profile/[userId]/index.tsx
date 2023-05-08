@@ -1,15 +1,14 @@
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import Navbar from "../../../../components/NavBar";
+import UserWidget from "@/components/UserWidget";
 import { useQuery } from "@apollo/client";
 import { Box, useMediaQuery } from "@mui/material";
-import FriendsListWidget from "../../../../components/FriendsListWidget";
-import Loading from "../../../../components/Loading";
-import MyPostWidget from "../../../../components/MyPostWidget";
-import PostsWidget from "../../../../components/PostsWidget";
-import UserWidget from "../../../../components/UserWidget";
-import { GET_USER } from "../../../../lib/query";
-import { IUser } from "../../../../lib/types";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import FriendsListWidget from "@/components/FriendsListWidget";
+import Loading from "@/components/Loading";
+import MyPostWidget from "@/components/MyPostWidget";
+import PostsWidget from "@/components/PostsWidget";
+import { GET_USER } from "@/lib/query";
+import { IUser } from "@/lib/types";
 
 const Profile = () => {
   const router = useRouter();

@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import { IPalette } from "../../../lib/types";
-import Form from "../../../components/FormLogin";
+import { IPalette } from "@/lib/types";
+import Form from "@/components/FormLogin";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 

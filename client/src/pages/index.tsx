@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { Box, useMediaQuery } from "@mui/material";
-import { IUser } from "../../lib/types";
-import UserWidget from "../../components/UserWidget";
-import MyPostWidget from "../../components/MyPostWidget";
-import PostsWidget from "../../components/PostsWidget";
-import AdvertWidget from "../../components/AdvertWidget";
+import { IUser } from "@/lib/types";
+import UserWidget from "@/components/UserWidget";
+import MyPostWidget from "@/components/MyPostWidget";
+import PostsWidget from "@/components/PostsWidget";
+import AdvertWidget from "@/components/AdvertWidget";
 import { useQuery } from "@apollo/client";
-import { GET_USER } from "../../lib/query";
-import Loading from "../../components/Loading";
-import FriendsListWidget from "../../components/FriendsListWidget";
+import { GET_USER } from "@/lib/query";
+import Loading from "@/components/Loading";
+import FriendsListWidget from "@/components/FriendsListWidget";
 
 const Home = () => {
   const { id } = useSelector((state: { user: IUser }) => state.user);

@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { IPost, IUser } from "../lib/types";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import {
   FLUSH,
   PAUSE,
@@ -9,7 +9,6 @@ import {
   REGISTER,
   REHYDRATE,
 } from "reduxjs-toolkit-persist";
-import storage from "redux-persist/lib/storage";
 
 const initialState = {
   mode: "light",
@@ -53,5 +52,5 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
-export { store, persistor };
+export { persistor, store };
 export const { setMode, setLogin, setLogout } = authSlice.actions;
