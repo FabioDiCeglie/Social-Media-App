@@ -58,7 +58,7 @@ const PostsWidget = ({
 
   return (
     <>
-      {data.feedPosts.map(
+      {data.posts.map(
         ({
           id,
           userId,

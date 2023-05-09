@@ -52,8 +52,8 @@ export const GET_USER = gql`
 `;
 
 export const GET_POSTS = gql`
-  query FeedPosts {
-    feedPosts {
+  query posts {
+    posts {
       comments
       description
       firstName
