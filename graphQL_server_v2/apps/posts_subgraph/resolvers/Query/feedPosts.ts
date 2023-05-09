@@ -1,8 +1,8 @@
 import { GraphQLError } from "graphql";
-import { IPost, Like } from "lib/types";
+import { IPost } from "lib/types";
 import { Post } from "models/Post";
 
-export const getFeedPosts: () => Promise<IPost[] | GraphQLError> = async () => {
+export const getPosts: () => Promise<IPost[] | GraphQLError> = async () => {
   try {
     const allPosts = await Post.find();
     const formatPosts = allPosts.map((post) => {
