@@ -1,4 +1,4 @@
-import "@/styles/globals.css";
+import "@/src/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Rubik } from "next/font/google";
 import { useSelector } from "react-redux";
