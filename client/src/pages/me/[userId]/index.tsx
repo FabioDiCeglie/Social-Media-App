@@ -6,7 +6,7 @@ const Me = () => {
   const isAuth = useSelector((state: { token: string }) => state.token);
   const router = useRouter();
 
-  if (!isAuth) {
+  if (isAuth === null) {
     router.push("/login");
   }
   return <Profile />;
