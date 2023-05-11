@@ -29,9 +29,7 @@ import { setLogout, setMode } from "@/state";
 const NavBar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
-  const { firstName, lastName } = useSelector(
-    (state: { user: IUser }) => state.user
-  );
+  const user = useSelector((state: { user: IUser }) => state?.user);
   const router = useRouter();
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)");
 
@@ -44,7 +42,7 @@ const NavBar = () => {
   const primaryLight = primary.light;
   const alt = backgroundPalette.alt;
 
-  const fullName = `${firstName} ${lastName}` ?? "User";
+  const fullName = user ? `${user.firstName} ${user.lastName}` : "";
 
   return (
     <FlexBetween padding="1rem 6%" bgcolor={alt}>
